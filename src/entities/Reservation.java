@@ -46,7 +46,7 @@ public class Reservation {
 	}
 	
 	public String updateDates(Date checkIn, Date checkOut) {
-		
+		//agora a logica de validação veio para o metodo responsavel
 		Date now = new Date();
 		if(checkIn.before(now) || checkOut.before(now)) {
 			return "Error in reservation: Reservation dates for update must be future dates";
@@ -58,7 +58,6 @@ public class Reservation {
 			return null;
 		}
 	}
-		
 	
 	@Override
 	public String toString() {

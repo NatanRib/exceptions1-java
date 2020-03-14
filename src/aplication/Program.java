@@ -17,8 +17,8 @@ public class Program {
 		- alterações das reservas só podem ocorrer para datas futuras
 		- a data de saida deve ser maior que a data de entrada
 		
-		#1 soluçao- muito ruim (tratando as excessoes  sem try-cacth
-		e dentro do programa principal
+		#2 soluçao- ruim (tratando as excessoes  sem try-cacth
+		porem delegando a responsabilidade para a classe Reservation
 		*/
 		
 		Scanner scan = new Scanner(System.in);
@@ -51,13 +51,7 @@ public class Program {
 			}else {
 				System.out.println(res);
 			}
-			
-			
 		}
-		
-
-		
 		scan.close();
 	}
-
 }
