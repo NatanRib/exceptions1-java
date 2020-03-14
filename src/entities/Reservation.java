@@ -45,10 +45,20 @@ public class Reservation {
 		//TimeUnit é uma classe que serve para cobersao de unidades de tempo
 	}
 	
-	public void updateDates(Date checkIn, Date checkOut) {
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
+	public String updateDates(Date checkIn, Date checkOut) {
+		
+		Date now = new Date();
+		if(checkIn.before(now) || checkOut.before(now)) {
+			return "Error in reservation: Reservation dates for update must be future dates";
+		}if(checkOut.before(checkIn)){
+			return "Error in resevation: check-out date munst be after check-in date";	
+		}else {
+			this.checkIn = checkIn;
+			this.checkOut = checkOut;
+			return null;
+		}
 	}
+		
 	
 	@Override
 	public String toString() {
