@@ -51,6 +51,11 @@ public class Program {
 			System.out.println("invalide data format");
 		}catch(DomainException e) {
 			System.out.println(e.getMessage());
+		}catch (RuntimeException e) {
+			/*podemos ainda para nao quebrar o programa usar
+			*a super classe RunTimeException para tratar todas
+			as excessoes desse tipo(em tempo de execucao*/
+			System.out.println("Unexpected error");
 		}finally {
 			scan.close();
 		}
