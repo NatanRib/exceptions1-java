@@ -17,10 +17,15 @@ public class Reservation {
 	}
 
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
-		super();
+		
 		this.roomNumber = roomNumber;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
+		if (checkIn.after(checkOut)) {
+			throw new IllegalArgumentException(
+					"Error in resevation: check-out date munst be after check-in date");
+		}else {
+			this.checkIn = checkIn;
+			this.checkOut = checkOut;
+		}
 	}
 
 	public Integer getRoomNumber() {
@@ -45,17 +50,20 @@ public class Reservation {
 		//TimeUnit é uma classe que serve para cobersao de unidades de tempo
 	}
 	
-	public String updateDates(Date checkIn, Date checkOut) {
+	public void updateDates(Date checkIn, Date checkOut) {
 		//agora a logica de validação veio para o metodo responsavel
 		Date now = new Date();
 		if(checkIn.before(now) || checkOut.before(now)) {
-			return "Error in reservation: Reservation dates for update must be future dates";
+		//temos que lancar a excessao de dentro do metodo, agora ele pode voltar a ser sem retorno(void)
+		//podemos usar essa classe de exceccao, pois o possivel erro seria um argumento invalido
+			throw new IllegalArgumentException(
+					"Error in reservation: Reservation dates for update must be future dates");
 		}if(checkOut.before(checkIn)){
-			return "Error in resevation: check-out date munst be after check-in date";	
+			throw new IllegalArgumentException(
+					"Error in resevation: check-out date munst be after check-in date");	
 		}else {
 			this.checkIn = checkIn;
 			this.checkOut = checkOut;
-			return null;
 		}
 	}
 	
